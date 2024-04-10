@@ -16,15 +16,47 @@ class AttendancePage extends StatefulWidget {
 class _AttendancePageState extends State<AttendancePage> {
   final List<Map<String, dynamic>> _students = [
     {
-      'registerNumber': '001',
-      'name': 'John Doe',
+      'registerNumber': '002',
+      'name': 'Alice Smith',
+      'totalClasses': 30,
+      'classesJoined': 25,
+      'percentage': 83.3,
+      'odMl': 'Yes',
+    },
+    {
+      'registerNumber': '003',
+      'name': 'Bob Johnson',
       'totalClasses': 30,
       'classesJoined': 28,
       'percentage': 93.3,
-      'odMl': '2',
+      'odMl': 'Yes',
     },
-    // Add more student data here...
+    {
+      'registerNumber': '004',
+      'name': 'Emma Wilson',
+      'totalClasses': 30,
+      'classesJoined': 26,
+      'percentage': 86.7,
+      'odMl': 'Yes',
+    },
+    {
+      'registerNumber': '005',
+      'name': 'Daniel Brown',
+      'totalClasses': 30,
+      'classesJoined': 24,
+      'percentage': 80.0,
+      'odMl': 'No',
+    },
+    {
+      'registerNumber': '006',
+      'name': 'Sophia Taylor',
+      'totalClasses': 30,
+      'classesJoined': 29,
+      'percentage': 96.7,
+      'odMl': 'No',
+    },
   ];
+
 
   // Method to get the formatted date and day
   String _getFormattedDate() {
