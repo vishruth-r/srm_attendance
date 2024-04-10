@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import '../common_drawer.dart';
+import 'analytics_page.dart';
+import 'attendance_page.dart';
+import 'login_page.dart';
+import 'odml_page.dart';
 
 class Faculty {
   final String name;
@@ -31,10 +35,31 @@ class FacultiesPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Faculties'),
       ),
-      drawer: CommonDrawer(onDrawerItemTap: (index) {
-        // Handle drawer item taps
-        // You can use Navigator to navigate to different pages based on the index
-      }),
+      drawer: CommonDrawer(
+        onDrawerItemTap: (index) {
+          switch (index) {
+            case 0:
+            // Navigate to Attendance Page
+              Navigator.of(context).push(MaterialPageRoute(builder: (_) => AttendancePage()));
+              break;
+            case 1:
+            // Navigte to Faculties Page
+              Navigator.of(context).push(MaterialPageRoute(builder: (_) => AnalyticsPage()));
+              break;
+            case 2:
+            // Navigate to Faculties Page
+              Navigator.of(context).push(MaterialPageRoute(builder: (_) => FacultiesPage()));
+              break;
+            case 3:
+            // Navigate to Faculties Page
+              Navigator.of(context).push(MaterialPageRoute(builder: (_) => StudentsODMLPage()));
+              break;
+            case 4:
+              Navigator.of(context).push(MaterialPageRoute(builder: (_) => SignInPage()));
+              break;
+          }
+        },
+      ),
       body: SingleChildScrollView(
         child: DataTable(
           columns: const <DataColumn>[

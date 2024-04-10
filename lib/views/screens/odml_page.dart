@@ -4,6 +4,8 @@ import 'package:srm_attendance/views/screens/attendance_page.dart';
 import 'package:srm_attendance/views/screens/faculties_page.dart';
 
 import '../common_drawer.dart';
+import 'login_page.dart';
+
 class StudentsODMLPage extends StatefulWidget {
   @override
   _StudentsODMLPageState createState() => _StudentsODMLPageState();
@@ -12,6 +14,8 @@ class StudentsODMLPage extends StatefulWidget {
 class _StudentsODMLPageState extends State<StudentsODMLPage> {
   late String _name;
   late String _registrationNumber;
+  bool _isOD = true; // Default to OD
+  late String _reason;
   late DateTime _selectedDate;
 
   @override
@@ -55,10 +59,12 @@ class _StudentsODMLPageState extends State<StudentsODMLPage> {
             Navigator.of(context).push(MaterialPageRoute(builder: (_) => FacultiesPage()));
             break;
           case 3:
-          // Already on Students OD/ML Page, no need to navigate
+          // Navigate to Students OD/ML Page
+            Navigator.of(context).push(MaterialPageRoute(builder: (_) => StudentsODMLPage()));
             break;
           case 4:
-          // Handle logout functionality
+          // Navigate to Sign In Page
+            Navigator.of(context).push(MaterialPageRoute(builder: (_) => SignInPage()));
             break;
         }
       }),
@@ -87,23 +93,80 @@ class _StudentsODMLPageState extends State<StudentsODMLPage> {
             SizedBox(height: 20),
             Row(
               children: [
-                Text('Date: ${_selectedDate.toString().substring(0, 10)}'),
-                SizedBox(width: 10),
-                ElevatedButton(
-                  onPressed: () => _selectDate(context),
-                  child: Text('Select Date'),
+                Text('OD: '),
+                Radio(
+                  value: true,
+                  groupValue: _isOD,
+                  onChanged: (value) {
+                    setState(() {
+                      _isOD = value as bool;
+                    });
+                  },
+                ),
+                SizedBox(width: 20),
+                Text('ML: '),
+                Radio(
+                  value: false,
+                  groupValue: _isOD,
+                  onChanged: (value) {
+                    setState(() {
+                      _isOD = value as bool;
+                    });
+                  },
                 ),
               ],
             ),
             SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                // Handle file upload
+            TextField(
+              decoration: InputDecoration(labelText: 'Reason'),
+              onChanged: (value) {
+                setState(() {
+                  _reason = value;
+                });
               },
-              child: Text('Upload File'),
+            ),
+            SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Date: ${_selectedDate.toString().substring(0, 10)}'),
+                    ElevatedButton(
+                      onPressed: () => _selectDate(context),
+                      child: Text('Select Date'),
+                    ),
+                  ],
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    // Handle form submission
+                    _submitForm(context);
+                  },
+                  child: Text('Submit'),
+                ),
+              ],
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  void _submitForm(BuildContext context) {
+    // Clear text fields
+    setState(() {
+      _name = '';
+      _registrationNumber = '';
+      _reason = '';
+    });
+
+    // Show Snackbar
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Form submitted!'),
+        duration: Duration(seconds: 2),
       ),
     );
   }

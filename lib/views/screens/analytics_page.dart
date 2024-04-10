@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:srm_attendance/views/screens/odml_page.dart';
 
 import '../common_drawer.dart';
 import '../screens/attendance_page.dart';
@@ -51,10 +52,18 @@ class AnalyticsPage extends StatelessWidget {
               Navigator.of(context).push(MaterialPageRoute(builder: (_) => AttendancePage()));
               break;
             case 1:
+            // Navigte to Faculties Page
+              Navigator.of(context).push(MaterialPageRoute(builder: (_) => AnalyticsPage()));
+              break;
+            case 2:
             // Navigate to Faculties Page
               Navigator.of(context).push(MaterialPageRoute(builder: (_) => FacultiesPage()));
               break;
-            case 2:
+            case 3:
+            // Navigate to Faculties Page
+              Navigator.of(context).push(MaterialPageRoute(builder: (_) => StudentsODMLPage()));
+              break;
+            case 4:
               Navigator.of(context).push(MaterialPageRoute(builder: (_) => SignInPage()));
               break;
           }

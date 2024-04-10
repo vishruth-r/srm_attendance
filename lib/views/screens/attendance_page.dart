@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:srm_attendance/views/screens/login_page.dart';
 
 import '../../main.dart';
 import '../common_drawer.dart';
@@ -52,10 +53,11 @@ class _AttendancePageState extends State<AttendancePage> {
         // Handle drawer item taps
         switch (index) {
           case 0:
-          // Already on Attendance Page, no need to navigate
+          // Navigate to Attendance Page
+            Navigator.of(context).push(MaterialPageRoute(builder: (_) => AttendancePage()));
             break;
           case 1:
-          // Navigate to Analytics Page
+          // Navigte to Faculties Page
             Navigator.of(context).push(MaterialPageRoute(builder: (_) => AnalyticsPage()));
             break;
           case 2:
@@ -63,11 +65,11 @@ class _AttendancePageState extends State<AttendancePage> {
             Navigator.of(context).push(MaterialPageRoute(builder: (_) => FacultiesPage()));
             break;
           case 3:
-          // Navigate to Students OD/ML Page
+          // Navigate to Faculties Page
             Navigator.of(context).push(MaterialPageRoute(builder: (_) => StudentsODMLPage()));
             break;
           case 4:
-          // Handle logout functionality
+            Navigator.of(context).push(MaterialPageRoute(builder: (_) => SignInPage()));
             break;
         }
       }),
